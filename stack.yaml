@@ -30,7 +30,6 @@ resolver: lts-16.22
 #   - wai
 packages:
 - .
-- ../lightarrow
 # Dependency packages to be pulled from upstream that are not in the resolver.
 # These entries can reference officially published versions as well as
 # forks / in-progress versions pinned to a git hash. For example:
@@ -41,8 +40,8 @@ packages:
 #   commit: e7b331f14bcffb8367cd58fbfc8b40ec7642100a
 #
 extra-deps:
-  # - git: https://github.com/Linearity/lightarrow.git
-  #   commit: b8ad71186e3f24a0cb4c25abf6a994c36980f112 
+  - git: https://github.com/Linearity/lightarrow.git
+    commit: 4330ac3ec812cc036de1df8782945ca5766a2b3a 
   - git: https://github.com/Linearity/dunai.git
     commit: 80b23457458e07939c1e7bc575b19ebfc30b051e
     subdirs:

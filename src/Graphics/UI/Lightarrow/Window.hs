@@ -3,12 +3,12 @@ module Graphics.UI.Lightarrow.Window where
 import Control.Monad.Reader
 import Control.Monad.State.Strict
 import Control.Monad.Writer.Strict
-import Data.Bifunctor (first)
+import Data.Bifunctor (first, second)
 import Data.Lightarrow.Color
 import Data.Lightarrow.SceneTransform
 import Data.Lightarrow.SceneGraph
-import Data.MonadicStreamFunction hiding (embed, first)
-import FRP.BearRiver hiding (embed, first)
+import Data.MonadicStreamFunction hiding (embed, first, second)
+import FRP.BearRiver hiding (embed, first, second)
 import FRP.BearRiver.Monad
 import Graphics.Lightarrow.Rectangle
 import Graphics.UI.Lightarrow.Common
@@ -57,7 +57,7 @@ window _button _cursor _x _d dragged idle items
                                 a'      <- arrM xfInput     -< a
                                 ecbd    <- liftSF sf        -< (c, a')
                                 f       <- constM xfDraw    -< ()
-                                returnA -< first (\(c, b) -> (c, f b)) ecbd
+                                returnA -< first (second f) ecbd
             xfInput a       = do    c   <- xfCursor _x (a ^. _cursor)
                                     return (a & _cursor .~ c)
             xfDraw          = do    (x, y, z)   <- gets (view _x)
@@ -80,4 +80,4 @@ rectWindow = window _button _cursor _1 _2 drag idle
             draw c      = do    (x,y,z)     <- use _1
                                 d           <- use _2
                                 return (Node (Frame (translate (V3 x y z)))
-                                            [Node (Term (drawRectangle c d)) []])
+                                            [Node (Term (sceneRectangle c d)) []])

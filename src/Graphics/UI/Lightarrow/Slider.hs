@@ -70,7 +70,7 @@ rectSlider = slider button cursor (_1 % _1) (_1 % _2) _2 idle hover clicked
 
 drawSlider c (x, y, z) (w, h) k = Node Group [bar, knob]
     where   bar     = Node (Frame (translate (V3 x y z)))
-                        [   Node (Term (drawRectangle c (w, h))) [] ]
+                        [   Node (Term (sceneRectangle c (w, h))) [] ]
             knob    = Node (Frame (translate (V3 xK y (z + 1))))
-                        [   Node (Term (drawRectangle (Dark c) (2 * h, 2 * h))) []  ]
+                        [   Node (Term (sceneRectangle (Dark c) (2 * h, 2 * h))) []  ]
             xK      = x - w/2 + k * w

@@ -14,6 +14,6 @@ rectangle of varying width and height, determined by two sliders in a window:
             f (a, [k1])     = f (a, [k1, 0])
             f (_, k1:k2:_)  = let   w   = (k1 + 1) * 100
                                     h   = (k2 + 1) * 100
-                                in Node (Term (drawRectangle Red (w, h))) []
+                                in Node (Term (sceneRectangle Red (w, h))) []
         in modulateWithSliders 2
             (always (constant (arr f)))
